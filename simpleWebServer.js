@@ -1,17 +1,10 @@
 const http=require("http");
 const fs=require("fs");
-console.info(timeStamp()+" -- [localhost] WebServer is now READY --");
-
-var requestor=""
-var availableTypes=["css","js","ico","jpg","png","gif","ttf","woff","html"];
-var availableContentTypes=["text/css","text/javascript","image/x-icon","image/jpeg","image/jpeg","image/gif","application/x-font-ttf","application/font-woff","text/html"];
 
 const logRequests="yes";
 const logRequestor="yes";
 
-const MSG_NOTFOUND="<br /><br /><center><h1>[<span style='color:#F00'>404</span>] PAGE/FILE <span style='color:#F00'>NOT</span> FOUND</h4></center>";
-
-
+// FUNCTION: TIME STAMP
 function timeStamp(){
 	let CurrTime=new Date();
 	let mo=CurrTime.getMonth()+1;if(mo<10){mo="0"+mo;}let da=CurrTime.getDate();if(da<10){da="0"+da;}let yr=CurrTime.getFullYear();
@@ -19,6 +12,17 @@ function timeStamp(){
 	return "["+yr+"/"+mo+"/"+da+" @ "+hr+":"+min+":"+sec+"]"
 }
 
+// CONSOLE WHEN LAUNCHED
+console.info(timeStamp()+" -- [localhost] WebServer is now READY --");
+
+// VARIABLES AND ARRAYS
+var requestor=""
+var availableTypes=["css","js","ico","jpg","png","gif","ttf","woff","html"];
+var availableContentTypes=["text/css","text/javascript","image/x-icon","image/jpeg","image/jpeg","image/gif","application/x-font-ttf","application/font-woff","text/html"];
+
+const MSG_NOTFOUND="<br /><br /><center><h1>[<span style='color:#F00'>404</span>] PAGE/FILE <span style='color:#F00'>NOT</span> FOUND</h4></center>";
+
+// CREATE HTTP SERVER
 http.createServer(function (requested, response) {
 	if(requested.url==="/"){
 		console.info(timeStamp()+" Attempting to access file:  index.html")
